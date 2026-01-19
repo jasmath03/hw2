@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assignment 1: Painting (Easy)</title>
+<style>
+  body {
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+  }
+
+  #canvasContainer {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+  canvas {
+    border: 1px solid black;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #bgCanvas { z-index: 0; }
+  #webgl { z-index: 1; }
+
+  #controls {
+    margin-top: 10px;
+  }
+
+  .control-group {
+    margin-bottom: 10px;
+  }
+
+  .color-sliders input,
+  .slider-row input {
+    width: 150px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
+  button {
+    margin-right: 5px;
+    margin-top: 3px;
+  }
+
+  .slider-row {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .slider-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .slider-item label,
+  .color-sliders label {
+    margin-right: 5px;
+    font-weight: normal;
+  }
+</style>
+</head>
+<body onload="main()">
+
+<div id="canvasContainer">
+  <canvas id="bgCanvas" width="400" height="400"></canvas>
+  <canvas id="webgl" width="400" height="400">Your browser does not support canvas.</canvas>
+</div>
+
+<div id="controls">
+  <div class="control-group">
+    <button onclick="clearCanvas()">Clear Canvas</button>
+  </div>
+
+  <div class="control-group">
+    <div>Drawing mode:</div>
+    <button onclick="setBrush('point')">Point</button>
+    <button onclick="setBrush('triangle')">Triangle</button>
+    <button onclick="setBrush('circle')">Circle</button>
+  </div>
+
+  <div class="control-group">
+    <div>Shape Color:</div>
+    <div class="color-sliders">
+      <label>R:</label>
+      <input type="range" id="rSlider" min="0" max="1" step="0.01" value="1">
+      <label>G:</label>
+      <input type="range" id="gSlider" min="0" max="1" step="0.01" value="0">
+      <label>B:</label>
+      <input type="range" id="bSlider" min="0" max="1" step="0.01" value="0">
+    </div>
+  </div>
+
+  <div class="control-group slider-row">
+    <div class="slider-item">
+      <label>Shape Size:</label>
+      <input type="range" id="sizeSlider" min="2" max="50" value="10">
+    </div>
+    <div class="slider-item">
+      <label>(Circles) Segment Count:</label>
+      <input type="range" id="segmentSlider" min="3" max="50" value="20">
+    </div>
+  </div>
+</div>
+
+<script src="lib/webgl-utils.js"></script>
+<script src="lib/webgl-debug.js"></script>
+<script src="lib/cuon-utils.js"></script>
+<script src="asgn1.js"></script>
+</body>
+</html>
